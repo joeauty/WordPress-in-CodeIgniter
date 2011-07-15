@@ -1661,6 +1661,10 @@ function get_status_header_desc( $code ) {
  * @return unknown
  */
 function status_header( $header ) {
+	if (defined('IN_CI')) {
+		// running inside CodeIgniter, WordPress should not set headers
+		return;
+	}
 	$text = get_status_header_desc( $header );
 
 	if ( empty( $text ) )
