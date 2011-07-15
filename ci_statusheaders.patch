@@ -1,0 +1,27 @@
+From 0c82efb57e29ba2da7e7938e176383f097ee07ed Mon Sep 17 00:00:00 2001
+From: Joe Auty <joe@netmusician.org>
+Date: Fri, 15 Jul 2011 15:59:05 -0400
+Subject: [PATCH] Do not set status headers while inside of CodeIgniter
+
+---
+ wp-includes/functions.php |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/wp-includes/functions.php b/wp-includes/functions.php
+index 7a682ef..25c7ae2 100644
+--- a/wp-includes/functions.php
++++ b/wp-includes/functions.php
+@@ -1661,6 +1661,10 @@ function get_status_header_desc( $code ) {
+  * @return unknown
+  */
+ function status_header( $header ) {
++	if (defined('IN_CI')) {
++		// running inside CodeIgniter, WordPress should not set headers
++		return;
++	}
+ 	$text = get_status_header_desc( $header );
+ 
+ 	if ( empty( $text ) )
+-- 
+1.7.5.4
+
