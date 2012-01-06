@@ -9,7 +9,7 @@ if ($user == "localhost") {
 }
 
 if ($user != "/") {
-	$configfile = '/wp-config-' . $user . '.php';
+	$configfile = 'wp-config-' . $user . '.php';
 }
 
 if ( !file_exists( dirname(__FILE__) . '/' . $configfile) || !isset($configfile) )
