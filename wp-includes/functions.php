@@ -1664,7 +1664,7 @@ function get_status_header_desc( $code ) {
  * @return unknown
  */
 function status_header( $header ) {
-	if (defined('IN_CI')) {
+	if (defined('IN_CI') || file_exists($_SERVER['DOCUMENT_ROOT'] . "/system")) {
 		// running inside CodeIgniter, WordPress should not set headers
 		return;
 	}
